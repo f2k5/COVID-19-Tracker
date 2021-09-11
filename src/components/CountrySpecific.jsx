@@ -60,31 +60,31 @@ const CountrySpecific = () => {
 
                     <tr>
                         {countryCovid19Ddata.cases === 0 ? 
-                            <td className = "statUnavailable">Stat unavailable</td> : 
+                            <td>0</td> : 
                             <td><CountUp start={0} end={countryCovid19Ddata.cases} duration={2} separator="," /></td>}
 
                         {countryCovid19Ddata.active === 0 ? 
-                            <td className = "statUnavailable">Stat unavailable</td> : 
+                            <td>0</td> : 
                             <td><CountUp start={0} end={countryCovid19Ddata.active} duration={2} separator="," /></td>}
 
                         {countryCovid19Ddata.recovered === 0 ? 
-                            <td className = "statUnavailable">Stat unavailable</td> : 
+                            <td>0</td> : 
                             <td><CountUp start={0} end={countryCovid19Ddata.recovered} duration={2} separator="," /></td>}
 
                         {countryCovid19Ddata.todayRecovered === 0 ? 
-                            <td className = "statUnavailable">Stat unavailable</td> : 
+                            <td>0</td> : 
                             <td><CountUp start={0} end={countryCovid19Ddata.todayRecovered} duration={2} separator="," /></td>}
 
                         {countryCovid19Ddata.critical === 0 ? 
-                            <td className = "statUnavailable">Stat unavailable</td> : 
+                            <td>0</td> : 
                             <td><CountUp start={0} end={countryCovid19Ddata.critical} duration={2} separator="," /></td>}
 
                         {countryCovid19Ddata.deaths === 0 ? 
-                            <td className = "statUnavailable">Stat unavailable</td> : 
+                            <td>0</td> : 
                             <td><CountUp start={0} end={countryCovid19Ddata.deaths} duration={2} separator="," /></td>}
 
                         {countryCovid19Ddata.todayDeaths === 0 ? 
-                            <td className = "statUnavailable">Stat unavailable</td> :
+                            <td>0</td> : 
                             <td><CountUp start={0} end={countryCovid19Ddata.todayDeaths} duration={2} separator="," /></td>}
                     </tr>
                 </table>
