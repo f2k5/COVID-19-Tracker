@@ -7,6 +7,7 @@ const CountrySpecific = () => {
     const [countryCovid19Ddata, updateCountryCovid19Data] = useState("");
     const [countryName, updateCountryName] = useState("");
     const [buttonPressed, updateButtonPress] = useState(false);
+    const api = "https://corona.lmao.ninja/v3/covid-19/countries#";
 
     const fetchName = (event) => {
         let userCountryName = event.target.value;
@@ -21,7 +22,7 @@ const CountrySpecific = () => {
     }
 
     useEffect(() => {
-        axios.get("https://corona.lmao.ninja/v3/covid-19/countries#")
+        axios.get(api)
         .then(function(response) {
             response.data.forEach((x, i) => {
                 if (countryName === x.country) {

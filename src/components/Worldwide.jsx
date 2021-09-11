@@ -6,9 +6,10 @@ import axios from "axios";
 const Worldwide = () => {
 
     const [worldWideCovid19Data, updateWorldwideCovid19Data] = useState("");
+    const api = "https://corona.lmao.ninja/v3/covid-19/all";
 
     useEffect(() => {
-        axios.get("https://corona.lmao.ninja/v3/covid-19/all")
+        axios.get(api)
         .then(function(response) {
             updateWorldwideCovid19Data(response.data)
             console.log(response.data);
