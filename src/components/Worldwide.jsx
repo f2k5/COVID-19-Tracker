@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react";
+import CountUp from "react-countup";
 import axios from "axios";
 
-function Worldwide () {
+const Worldwide = () => {
 
     const [worldwide_covid19_data, update_worldwide_covid19_data] = useState("");
 

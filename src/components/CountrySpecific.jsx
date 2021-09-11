@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import countries from "../countries";
+import CountUp from "react-countup";
 
 const CountrySpecific = () => {
-    const [country_covid19_data, update_country_covid19_data] = useState("");
+    const [countryCovid19Ddata, updateCountryCovid19Data] = useState("");
     const [countryName, updateCountryName] = useState("");
     const [buttonPressed, updateButtonPress] = useState(false);
 
@@ -13,7 +14,7 @@ const CountrySpecific = () => {
         }
     }
 
-    function fetchName (event) {
+    const fetchName = (event) => {
         let userCountryName = event.target.value;
         userCountryName = userCountryName.charAt(0).toUpperCase() + userCountryName.slice(1, userCountryName.length).toLowerCase();
         updateCountryName(userCountryName);
@@ -21,7 +22,7 @@ const CountrySpecific = () => {
         updateButtonPress(false);
     }
 
-    function handleButton() {
+    const handleButton = () => {
         updateButtonPress(true);
     }
 
@@ -31,7 +32,7 @@ const CountrySpecific = () => {
             response.data.forEach((x, i) => {
                 if (countryName === x.country) {
                     const data_received = response.data[i];
-                    update_country_covid19_data(data_received);
+                    updateCountryCovid19Data(data_received);
                 } 
             })           
         })
@@ -40,7 +41,7 @@ const CountrySpecific = () => {
         });
     }, [countryName]);
 
-    var date = new Date(country_covid19_data.updated).toString();
+    var date = new Date(countryCovid19Ddata.updated).toString();
 
     return (
         <div className = "country-info-display">
@@ -50,7 +51,7 @@ const CountrySpecific = () => {
 
             <div className = "worldinfo-table">
                 
-                <h1 className = "section-heading">{country_covid19_data.country} ({country_covid19_data.continent})</h1>
+                <h1 className = "section-heading">{countryCovid19Ddata.country} ({countryCovid19Ddata.continent})</h1>
                 <h2 className = "worldinfo-latest-time">Last Updated: {date}</h2>
                 <table className = "table-container">
                     <tr>
@@ -64,13 +65,33 @@ const CountrySpecific = () => {
                     </tr>
 
                     <tr>
-                        <td>{numberWithCommas(country_covid19_data.cases)}</td>
-                        <td>{numberWithCommas(country_covid19_data.active)}</td>
-                        <td>{numberWithCommas(country_covid19_data.recovered)}</td>
-                        <td>{numberWithCommas(country_covid19_data.todayRecovered)}</td>
-                        <td>{numberWithCommas(country_covid19_data.critical)}</td>
-                        <td>{numberWithCommas(country_covid19_data.deaths)}</td>
-                        <td>{numberWithCommas(country_covid19_data.todayDeaths)}</td>
+                        {countryCovid19Ddata.cases === 0 ? 
+                            <td>Stat unavailable</td> : 
+                            <td><CountUp start={0} end={countryCovid19Ddata.cases} duration={2} separator="," /></td>}
+
+                        {countryCovid19Ddata.active === 0 ? 
+                            <td>Stat unavailable</td> : 
+                            <td><CountUp start={0} end={countryCovid19Ddata.active} duration={2} separator="," /></td>}
+
+                        {countryCovid19Ddata.recovered === 0 ? 
+                            <td>Stat unavailable</td> : 
+                            <td><CountUp start={0} end={countryCovid19Ddata.recovered} duration={2} separator="," /></td>}
+
+                        {countryCovid19Ddata.todayRecovered === 0 ? 
+                            <td>Stat unavailable</td> : 
+                            <td><CountUp start={0} end={countryCovid19Ddata.todayRecovered} duration={2} separator="," /></td>}
+
+                        {countryCovid19Ddata.critical === 0 ? 
+                            <td>Stat unavailable</td> : 
+                            <td><CountUp start={0} end={countryCovid19Ddata.critical} duration={2} separator="," /></td>}
+
+                        {countryCovid19Ddata.deaths === 0 ? 
+                            <td>Stat unavailable</td> : 
+                            <td><CountUp start={0} end={countryCovid19Ddata.deaths} duration={2} separator="," /></td>}
+
+                        {countryCovid19Ddata.todayDeaths === 0 ? 
+                            <td>Stat unavailable</td> :
+                            <td><CountUp start={0} end={countryCovid19Ddata.todayDeaths} duration={2} separator="," /></td>}
                     </tr>
                 </table>
             </div>
