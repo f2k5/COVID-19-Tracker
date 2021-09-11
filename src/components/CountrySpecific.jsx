@@ -2,12 +2,12 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import countries from "../countries";
 
-function CountrySpecific () {
+const CountrySpecific = () => {
     const [country_covid19_data, update_country_covid19_data] = useState("");
     const [countryName, updateCountryName] = useState("");
     const [buttonPressed, updateButtonPress] = useState(false);
 
-    function numberWithCommas(x) {
+    const numberWithCommas = (x) => {
         if (x) {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); 
         }
