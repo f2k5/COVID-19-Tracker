@@ -1,21 +1,16 @@
 import React, {useState, useEffect} from "react";
 import CountUp from "react-countup";
+import CovidTextImage from "../images/CovidTextImage.png";
 import axios from "axios";
 
 const Worldwide = () => {
 
-    const [worldwide_covid19_data, update_worldwide_covid19_data] = useState("");
-
-    function numberWithCommas(x) {
-        if (x) {
-            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); 
-        }
-    }
+    const [worldWideCovid19Data, updateWorldwideCovid19Data] = useState("");
 
     useEffect(() => {
         axios.get("https://corona.lmao.ninja/v3/covid-19/all")
         .then(function(response) {
-            update_worldwide_covid19_data(response.data)
+            updateWorldwideCovid19Data(response.data)
             console.log(response.data);
         })
         .catch(function(error) {
@@ -23,10 +18,11 @@ const Worldwide = () => {
         });
     }, []);
 
-    var date = new Date(worldwide_covid19_data.updated).toString();
+    var date = new Date(worldWideCovid19Data.updated).toString();
 
     return (
         <div className = "worldinfo-table">           
+            <img className = "imageHeading" src = {CovidTextImage} alt="COVID-19"/>
             <h1 className = "section-heading" >Worldwide</h1>
             <h2 className = "worldinfo-latest-time">Last Updated: {date}</h2>
             <table className = "table-container">
@@ -41,13 +37,33 @@ const Worldwide = () => {
                 </tr>
 
                 <tr>
-                    <td>{numberWithCommas(worldwide_covid19_data.cases)}</td>
-                    <td>{numberWithCommas(worldwide_covid19_data.active)}</td>
-                    <td>{numberWithCommas(worldwide_covid19_data.recovered)}</td>
-                    <td>{numberWithCommas(worldwide_covid19_data.todayRecovered)}</td>
-                    <td>{numberWithCommas(worldwide_covid19_data.critical)}</td>
-                    <td>{numberWithCommas(worldwide_covid19_data.deaths)}</td>
-                    <td>{numberWithCommas(worldwide_covid19_data.todayDeaths)}</td>
+                    {worldWideCovid19Data.cases === 0 ? 
+                        <td className = "statUnavailable">Stat unavailable</td> : 
+                        <td><CountUp start={0} end={worldWideCovid19Data.cases} duration={2} separator="," /></td>}
+
+                    {worldWideCovid19Data.active === 0 ? 
+                        <td className = "statUnavailable">Stat unavailable</td> : 
+                        <td><CountUp start={0} end={worldWideCovid19Data.active} duration={2} separator="," /></td>}
+
+                    {worldWideCovid19Data.recovered === 0 ? 
+                        <td className = "statUnavailable">Stat unavailable</td> : 
+                        <td><CountUp start={0} end={worldWideCovid19Data.recovered} duration={2} separator="," /></td>}
+
+                    {worldWideCovid19Data.todayRecovered === 0 ? 
+                        <td className = "statUnavailable">Stat unavailable</td> : 
+                        <td><CountUp start={0} end={worldWideCovid19Data.todayRecovered} duration={2} separator="," /></td>}
+
+                    {worldWideCovid19Data.critical === 0 ? 
+                        <td className = "statUnavailable">Stat unavailable</td> : 
+                        <td><CountUp start={0} end={worldWideCovid19Data.critical} duration={2} separator="," /></td>}
+
+                    {worldWideCovid19Data.deaths === 0 ? 
+                        <td className = "statUnavailable">Stat unavailable</td> : 
+                        <td><CountUp start={0} end={worldWideCovid19Data.deaths} duration={2} separator="," /></td>}
+
+                    {worldWideCovid19Data.todayDeaths === 0 ? 
+                        <td className = "statUnavailable">Stat unavailable</td> :
+                        <td><CountUp start={0} end={worldWideCovid19Data.todayDeaths} duration={2} separator="," /></td>}
                 </tr>
             </table>
             <br /> <br />

@@ -32,7 +32,7 @@ td {
     padding:0 20px;
     text-align: center;
     vertical-align: middle;
-    font-size: 25px;;
+    font-size: 20px;
 }
 
 .table-container {
@@ -65,4 +65,15 @@ footer {
 
 .warning {
   font-size: 12px;
+}
+
+.imageHeading {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+}
+
+.statUnavailable {
+  color: #888888;
 }

@@ -8,12 +8,6 @@ const CountrySpecific = () => {
     const [countryName, updateCountryName] = useState("");
     const [buttonPressed, updateButtonPress] = useState(false);
 
-    const numberWithCommas = (x) => {
-        if (x) {
-            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); 
-        }
-    }
-
     const fetchName = (event) => {
         let userCountryName = event.target.value;
         userCountryName = userCountryName.charAt(0).toUpperCase() + userCountryName.slice(1, userCountryName.length).toLowerCase();
@@ -66,31 +60,31 @@ const CountrySpecific = () => {
 
                     <tr>
                         {countryCovid19Ddata.cases === 0 ? 
-                            <td>Stat unavailable</td> : 
+                            <td className = "statUnavailable">Stat unavailable</td> : 
                             <td><CountUp start={0} end={countryCovid19Ddata.cases} duration={2} separator="," /></td>}
 
                         {countryCovid19Ddata.active === 0 ? 
-                            <td>Stat unavailable</td> : 
+                            <td className = "statUnavailable">Stat unavailable</td> : 
                             <td><CountUp start={0} end={countryCovid19Ddata.active} duration={2} separator="," /></td>}
 
                         {countryCovid19Ddata.recovered === 0 ? 
-                            <td>Stat unavailable</td> : 
+                            <td className = "statUnavailable">Stat unavailable</td> : 
                             <td><CountUp start={0} end={countryCovid19Ddata.recovered} duration={2} separator="," /></td>}
 
                         {countryCovid19Ddata.todayRecovered === 0 ? 
-                            <td>Stat unavailable</td> : 
+                            <td className = "statUnavailable">Stat unavailable</td> : 
                             <td><CountUp start={0} end={countryCovid19Ddata.todayRecovered} duration={2} separator="," /></td>}
 
                         {countryCovid19Ddata.critical === 0 ? 
-                            <td>Stat unavailable</td> : 
+                            <td className = "statUnavailable">Stat unavailable</td> : 
                             <td><CountUp start={0} end={countryCovid19Ddata.critical} duration={2} separator="," /></td>}
 
                         {countryCovid19Ddata.deaths === 0 ? 
-                            <td>Stat unavailable</td> : 
+                            <td className = "statUnavailable">Stat unavailable</td> : 
                             <td><CountUp start={0} end={countryCovid19Ddata.deaths} duration={2} separator="," /></td>}
 
                         {countryCovid19Ddata.todayDeaths === 0 ? 
-                            <td>Stat unavailable</td> :
+                            <td className = "statUnavailable">Stat unavailable</td> :
                             <td><CountUp start={0} end={countryCovid19Ddata.todayDeaths} duration={2} separator="," /></td>}
                     </tr>
                 </table>

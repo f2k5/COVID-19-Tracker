@@ -7,7 +7,6 @@ import Copyright from "./Copyright";
 function App (){
     return (
         <div>
-            <h1 className = "heading">COVID-19 Tracker</h1>
             <Worldwide />
             <CountrySpecific />
             <footer>
