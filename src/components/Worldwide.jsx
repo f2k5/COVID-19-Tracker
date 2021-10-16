@@ -6,15 +6,15 @@ import axios from "axios";
 const Worldwide = () => {
 
     const [worldWideCovid19Data, updateWorldwideCovid19Data] = useState("");
-    const api = "https://corona.lmao.ninja/v3/covid-19/all";
+    const api = "https://disease.sh/v3/covid-19/all";
 
     useEffect(() => {
         axios.get(api)
-        .then(function(response) {
+        .then(response => {
             updateWorldwideCovid19Data(response.data)
             console.log(response.data);
         })
-        .catch(function(error) {
+        .catch(error => {
             console.log(error);
         });
     }, []);
@@ -29,7 +29,7 @@ const Worldwide = () => {
             <table className = "table-container">
                 <tr>
                     <td>Cases</td>
-                    <td>Active</td>
+                    <td>Deaths</td>
                     <td>Recovered</td>
                     <td>Recovered today</td>
                     <td>Critical</td>
@@ -42,9 +42,9 @@ const Worldwide = () => {
                         <td className = "statUnavailable">Stat unavailable</td> : 
                         <td><CountUp start={0} end={worldWideCovid19Data.cases} duration={2} separator="," /></td>}
 
-                    {worldWideCovid19Data.active === 0 ? 
+                    {worldWideCovid19Data.deaths === 0 ? 
                         <td className = "statUnavailable">Stat unavailable</td> : 
-                        <td><CountUp start={0} end={worldWideCovid19Data.active} duration={2} separator="," /></td>}
+                        <td><CountUp start={0} end={worldWideCovid19Data.deaths} duration={2} separator="," /></td>}
 
                     {worldWideCovid19Data.recovered === 0 ? 
                         <td className = "statUnavailable">Stat unavailable</td> : 
