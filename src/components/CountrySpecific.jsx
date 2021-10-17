@@ -30,7 +30,6 @@ const CountrySpecific = () => {
         }
         updateAPI("https://disease.sh/v3/covid-19/countries/"+countryNameToBeConcatenatedWithAPI);
         updateCountryName(userCountryName);
-        console.log(userCountryName);
         updateButtonPress(false);
     }
 
@@ -43,10 +42,8 @@ const CountrySpecific = () => {
     useEffect(() => {
         axios.get(api)
         .then(response => {
-            return (
-            // response.data === undefined ? updateCountryCovid19Data("null") :
-            updateInvalidCountry(false),
-            updateCountryCovid19Data(response.data))
+            updateInvalidCountry(false);
+            updateCountryCovid19Data(response.data);
         })
         .catch(error => {
             updateInvalidCountry(true);
@@ -58,6 +55,7 @@ const CountrySpecific = () => {
 
     return (
         <div className = "country-info-display">
+
             <input class = "input-box" type="text" placeholder="Search for a country" onChange={fetchName} value={countryName}></input>
             <button class = "input-box" onClick = {handleButton}>Submit</button>
 
